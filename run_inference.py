@@ -7,7 +7,8 @@ import os
 import argparse
 from dotenv import load_dotenv
 
-load_dotenv()
+if not os.environ['MODEL_DIR']:
+    load_dotenv()
 
 
 # Load model and make a prediction using predefined test data
@@ -16,7 +17,8 @@ def predict(model_name, test_data):
     # Get model path
     model_dir = os.environ['MODEL_DIR']
     # model_name = 'simple_model.pkl'
-    full_model_path = os.path.join(model_dir, model_name)
+    os.getcwd()
+    full_model_path = os.path.join(os.getcwd(), model_dir + '/' + model_name)
 
     # Load the saved model
     print(f'Loading model from path {full_model_path}')

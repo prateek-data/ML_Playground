@@ -4,7 +4,8 @@ import pickle
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+if not os.environ['MODEL_DIR']:
+    load_dotenv()
 
 # Train and save the model
 def train_model():
