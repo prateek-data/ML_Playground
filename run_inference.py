@@ -1,7 +1,8 @@
-from sklearn.datasets import load_iris
-from sklearn.ensemble import RandomForestClassifier
+"""
+author: prateek
+"""
+
 import pickle
-import sys
 import ast
 import os
 import argparse
@@ -13,7 +14,9 @@ if not os.environ['MODEL_DIR']:
 
 # Load model and make a prediction using predefined test data
 def predict(model_name, test_data):
-
+    """
+    Runs inference
+    """
     # Get model path
     model_dir = os.environ['MODEL_DIR']
     # model_name = 'simple_model.pkl'
@@ -24,22 +27,22 @@ def predict(model_name, test_data):
     print(f'Loading model from path {full_model_path}')
     with open(full_model_path, 'rb') as f:
         model = pickle.load(f)
-    
+
     # Test data (sample input for prediction)
     if not test_data:
         test_data = [5.1, 3.5, 1.4, 0.2]  # Example features
         # test_data = [6.5, 3.5, 2.4, 1.2]
     else:
         test_data = ast.literal_eval(test_data)
-        
+
     prediction = model.predict([test_data])
     print(f"Prediction for {test_data}: {int(prediction[0])}")
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-m', "--model-name", required=True)  
-    parser.add_argument('-t', "--test-data", required=False)    
+    parser.add_argument('-m', "--model-name", required=True)
+    parser.add_argument('-t', "--test-data", required=False)
     args = parser.parse_args()
 
     model_name = args.model_name
@@ -47,5 +50,5 @@ if __name__ == '__main__':
         test_data = None
     else:
         test_data = args.test_data
-    
+
     predict(model_name, test_data)

@@ -33,16 +33,13 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Install dependencies
         run: python -m pip install --upgrade pip | 
-             pip install pylint
+             pip install pylint==2.14.5
 
       - name: Display Working Directory
         run: pwd;
              ls
 
-      - name: Check command result
-        run: git ls-files '*.py'
-
       - name: Run pylint
-        run: pylint $(git ls-files '*.py')
+        run: pylint --rcfile=.pylintrc --fail-under=6 $(git ls-files '*.py')
             
              

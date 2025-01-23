@@ -31,3 +31,6 @@
 
 ### Diagnose from inside docker container
 > docker exec -it ml_flow sh
+
+### Proper way to generate pylintrc file
+> pylint --generate-rcfile | out-file -encoding utf8 .pylintrc
