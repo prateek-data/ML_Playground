@@ -39,6 +39,9 @@ jobs:
         run: pwd;
              ls
 
+      - name: Check command result
+        run: git ls-files '*.py'
+
       - name: Run pylint
         run: $files = $(git ls-files '*.py') | 
              pylint --fail-under=5.0 $files
