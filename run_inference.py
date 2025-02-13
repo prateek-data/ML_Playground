@@ -8,7 +8,7 @@ import os
 import argparse
 from dotenv import load_dotenv
 
-if not os.environ['MODEL_DIR']:
+if not os.environ.get('MODEL_DIR'):
     load_dotenv()
 
 
